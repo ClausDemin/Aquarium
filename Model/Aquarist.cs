@@ -18,15 +18,21 @@ namespace AquariumProject.Model
 
         public void AddFish(FishSpecies species)
         {
-            _aquarium.TryAdd(_fishFactory.Create(species));
+            if (_aquarium.TryAdd(_fishFactory.Create(species))) 
+            {
+                Tick();
+            }
         }
 
         public void RemoveFish(int index)
         {
-            _aquarium.TryRemove(index);
+            if (_aquarium.TryRemove(index)) 
+            {
+                Tick();
+            }
         }
 
-        public void ObserveFish() 
+        public void Tick() 
         { 
             _aquarium.Tick();
         }

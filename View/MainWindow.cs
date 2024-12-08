@@ -87,7 +87,7 @@ namespace AquariumProject.View
 
         private void ObserveFish() 
         {
-            _presenter.Observe();
+            _presenter.Tick();
 
             _aquariumInfo.UpdateText(_presenter.GetInfo());
         }

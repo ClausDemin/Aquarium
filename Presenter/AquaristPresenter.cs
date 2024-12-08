@@ -27,9 +27,9 @@ namespace AquariumProject.Presenter
             _aquarist.RemoveFish(index);
         }
 
-        public void Observe() 
+        public void Tick() 
         { 
-            _aquarist.ObserveFish();
+            _aquarist.Tick();
         }
 
         public string[] GetInfo() 
