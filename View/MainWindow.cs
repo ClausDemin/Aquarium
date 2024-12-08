@@ -16,8 +16,8 @@ namespace AquariumProject.View
         private SwitchableMenu _mainMenu;
         private TextBox _aquariumInfo;
 
-        private AddFishWindow _addWindow;
-        private RemoveFishWindow _removeWindow;
+        private AddFishWindow _fishToAddWindow;
+        private RemoveFishWindow _fishToRemoveWindow;
 
         private bool _isExitRequested;
 
@@ -99,22 +99,22 @@ namespace AquariumProject.View
 
         private void ShowAddWindow() 
         {
-            _addWindow = new AddFishWindow(_localizationService, _presenter, new Point(0, 0));
-            _addWindow.Closed += Show;
+            _fishToAddWindow = new AddFishWindow(_localizationService, _presenter, new Point(0, 0));
+            _fishToAddWindow.Closed += Show;
 
             Console.Clear();
 
-            _addWindow.Run();
+            _fishToAddWindow.Run();
         }
 
         private void ShowRemoveWindow()
         {
-            _removeWindow = new RemoveFishWindow(_presenter, new Point(0, 0));
-            _removeWindow.Closed += Show;
+            _fishToRemoveWindow = new RemoveFishWindow(_presenter, new Point(0, 0));
+            _fishToRemoveWindow.Closed += Show;
 
             Console.Clear();
 
-            _removeWindow.Run();
+            _fishToRemoveWindow.Run();
         }
     }
 }

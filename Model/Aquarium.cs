@@ -2,18 +2,17 @@
 {
     public class Aquarium
     {
-        private Fish[] _fish;
+        private List<Fish> _fish;
 
         public Aquarium(int capacity)
         {
             Capacity = capacity;
-            Count = 0;
 
-            _fish = new Fish[Capacity];
+            _fish = new ();
         }
 
         public int Capacity { get; }
-        public int Count { get; private set; }
+        public int Count => _fish.Count;
 
         public IEnumerable<Fish> Fish => _fish;
 
@@ -23,7 +22,7 @@
             {
                 foreach (var fish in _fish.Where(fish => fish != null && fish.IsAlive)) 
                 { 
-                    fish.GetOlder();
+                    fish.GrowOlder();
                 }
             }
         }
@@ -32,9 +31,7 @@
         {
             if (Count < Capacity)
             {
-                _fish[Count] = fish;
-
-                Count++;
+                _fish.Add(fish);
 
                 return true;
             }
@@ -52,9 +49,7 @@
 
                 if (fishIndex >= 0)
                 {
-                    _fish[fishIndex] = null;
-
-                    Count--;
+                    _fish.RemoveAt(fishIndex);
 
                     return true;
                 }
@@ -67,31 +62,12 @@
         {
             if (index >= 0 && index <= Count)
             {
-                if (_fish[index] != null)
-                {
-                    _fish[index] = null;
+                _fish.RemoveAt(index);
 
-                    Count--;
-
-                    MoveToLeft(index);
-
-                    return true;
-                }
+                return true;
             }
 
             return false;
-        }
-
-        private void MoveToLeft(int from, int step = 1) 
-        {
-            var buffer = _fish[from];
-
-            for (int i = from; i < Count; i++) 
-            {
-                _fish[i] = _fish[i + step];
-            }
-
-            _fish[Count] = buffer;
         }
 
         private int GetFishIndex(Fish fish)

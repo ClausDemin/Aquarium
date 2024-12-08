@@ -9,7 +9,7 @@ namespace AquariumProject.View
 {
     public class AddFishWindow
     {
-        private SwitchableMenu _addMenu;
+        private SwitchableMenu _fishToAddMenu;
 
         private bool _isExitRequested;
 
@@ -23,7 +23,7 @@ namespace AquariumProject.View
                 menuBuilder.AddItem(name, () => presenter.Add(name));
             }
 
-            _addMenu = menuBuilder.Build(position);
+            _fishToAddMenu = menuBuilder.Build(position);
         }
 
         public event Action Closed = delegate { };
@@ -32,7 +32,7 @@ namespace AquariumProject.View
         {
             _isExitRequested = false;
 
-            _addMenu.Show();
+            _fishToAddMenu.Show();
 
             while (_isExitRequested == false) 
             {
@@ -49,15 +49,15 @@ namespace AquariumProject.View
             switch (userInput)
             {
                 case ConsoleKey.UpArrow:
-                    _addMenu.MoveCursor(CursorMovement.Up);
+                    _fishToAddMenu.MoveCursor(CursorMovement.Up);
                     break;
 
                 case ConsoleKey.DownArrow:
-                    _addMenu.MoveCursor(CursorMovement.Down);
+                    _fishToAddMenu.MoveCursor(CursorMovement.Down);
                     break;
 
                 case ConsoleKey.Enter:
-                    _addMenu.Click();
+                    _fishToAddMenu.Click();
                     _isExitRequested = true;
                     break;
             }

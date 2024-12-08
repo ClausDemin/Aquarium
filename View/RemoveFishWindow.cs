@@ -8,7 +8,7 @@ namespace AquariumProject.View
 {
     public class RemoveFishWindow
     {
-        private SwitchableMenu _removeMenu;
+        private SwitchableMenu _fishToRemoveMenu;
         private AquaristPresenter _presenter;
 
         private bool _isExitRequested;
@@ -23,19 +23,19 @@ namespace AquariumProject.View
 
             foreach (var fishInfo in _presenter.GetInfo()) 
             {
-                menuBuilder.AddItem(fishInfo, () => presenter.Remove(_removeMenu.GetCurrentItemIndex()));
+                menuBuilder.AddItem(fishInfo, () => presenter.Remove(_fishToRemoveMenu.GetCurrentItemIndex()));
             }
 
             menuBuilder.AddItem("Вернуться в главное меню", null);
 
-            _removeMenu = menuBuilder.Build(position);
+            _fishToRemoveMenu = menuBuilder.Build(position);
         }
 
         public event Action Closed = delegate { };
 
         public void Run() 
         { 
-            _removeMenu.Show();
+            _fishToRemoveMenu.Show();
 
             _isExitRequested = false;
 
@@ -54,15 +54,15 @@ namespace AquariumProject.View
             switch (userInput)
             {
                 case ConsoleKey.UpArrow:
-                    _removeMenu.MoveCursor(CursorMovement.Up);
+                    _fishToRemoveMenu.MoveCursor(CursorMovement.Up);
                     break;
 
                 case ConsoleKey.DownArrow:
-                    _removeMenu.MoveCursor(CursorMovement.Down);
+                    _fishToRemoveMenu.MoveCursor(CursorMovement.Down);
                     break;
 
                 case ConsoleKey.Enter:
-                    _removeMenu.Click();
+                    _fishToRemoveMenu.Click();
                     _isExitRequested = true;
                     break;
             }

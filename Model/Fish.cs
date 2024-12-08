@@ -22,7 +22,7 @@ namespace AquariumProject.Model
 
         public event Action Died = delegate { };
 
-        public void GetOlder()
+        public void GrowOlder()
         {
             if (IsAlive) 
             {

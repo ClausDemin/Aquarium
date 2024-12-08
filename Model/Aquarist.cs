@@ -18,28 +18,22 @@ namespace AquariumProject.Model
 
         public void AddFish(FishSpecies species)
         {
-            if (_aquarium.TryAdd(_fishFactory.Create(species))) 
-            {
-                Tick();
-            }
+            _aquarium.TryAdd(_fishFactory.Create(species));
         }
 
         public void RemoveFish(int index)
         {
-            if (_aquarium.TryRemove(index)) 
-            {
-                Tick();
-            }
+            _aquarium.TryRemove(index);
         }
 
-        public void Tick() 
-        { 
+        public void Tick()
+        {
             _aquarium.Tick();
         }
 
-        private IEnumerable<FishInfo> GetFishInfo() 
+        private IEnumerable<FishInfo> GetFishInfo()
         {
-            foreach (var fish in _aquarium.Fish.Where(fish => fish != null)) 
+            foreach (var fish in _aquarium.Fish.Where(fish => fish != null))
             {
                 yield return new FishInfo(fish.Species, fish.Age, fish.Lifetime, fish.IsAlive);
             }
